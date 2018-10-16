@@ -5,7 +5,6 @@ import sbtrelease.ReleasePlugin
 lazy val root = (project in file("."))
   .settings(
     name := "trivial-spark-utils",
-    scalaVersion := "2.11.11",
     libraryDependencies ++= Seq(
       "org.apache.spark" %% "spark-sql" % "2.3.1"        % Test,
       "org.scalatest"   %% "scalatest"     % "3.0.4"     % Test
