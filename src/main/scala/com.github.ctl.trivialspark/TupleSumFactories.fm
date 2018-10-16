@@ -1,0 +1,12 @@
+package com.github.ctl.trivialspark
+
+object TupleSumFactories {
+<#list 2..22 as i>
+    class TupleSumFactory${i}[<#list 1..i as j>P${j}<#if i != j>, </#if></#list>] extends TupleSumFactory {
+        type TupleSum = (<#list 1..i as j>Option[P${j}]<#if i != j>, </#if></#list>)
+        <#list 1..i as j>
+        def construct${j}(value:P${j}) = (<#list 1..i as k><#if j == k>Option(value)<#else>Option.empty[P${k}]</#if><#if i != k>, </#if></#list>)
+        </#list>
+    }
+</#list>
+}
