@@ -1,6 +1,6 @@
 package com.github.ctl.trivialspark
 
-object TupleExtensions {
+trait TupleExtensions {
   implicit class TupleExt(tup:Product) {
     def element =
       tup.productIterator

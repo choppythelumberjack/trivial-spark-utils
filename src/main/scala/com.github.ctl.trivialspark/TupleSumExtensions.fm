@@ -1,0 +1,15 @@
+package com.github.ctl.trivialspark
+
+object TupleSumExtensions extends TupleExtensions {
+<#list 2..22 as i>
+    implicit class Tuple${i}Ops[<#list 1..i as j>P${j}<#if i != j>,</#if></#list>](tup:(<#list 1..i as j>Option[P${j}]<#if i != j>,</#if></#list>)) {
+        def fold[T](<#list 1..i as j>f${j}:P${j}=>T<#if i != j>,</#if></#list>) =
+            tup match {
+                <#list 1..i as j>
+                case (<#list 1..i as k><#if j == k>Some(value)<#else>None</#if><#if i != k>,</#if></#list>) => f${j}(value)
+                </#list>
+                case other => throw new java.lang.IllegalArgumentException("Cannot match tuple sum variant for: "+other)
+            }
+    }
+</#list>
+}

@@ -43,7 +43,7 @@ class TestTupleFactory extends FreeSpec with Matchers {
       ))
     }
 
-    import TupleExtensions._
+    import TupleSumExtensions._
     "Match Element Case" in {
       val outputs =
         ds.map(tup => tup.element match {
@@ -58,6 +58,18 @@ class TestTupleFactory extends FreeSpec with Matchers {
         "I36",
         "I9"
       ))
+    }
+
+    "Fold Tuple" in {
+      (Some("foo"), Option.empty[Int]).fold(
+        str => s"S${str}",
+        i => s"I${i}"
+      ) should equal("Sfoo")
+
+      (Option.empty[String], Some(18)).fold(
+        str => s"S${str}",
+        i => s"I${i}"
+      ) should equal("I18")
     }
   }
 }
